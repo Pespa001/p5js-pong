@@ -11,8 +11,8 @@ let recy2 = 350;
 let xspeed = 4;
 let yspeed = 4;
 
-var r = 13;
-var score = 0;
+let r = 13;
+let score = 0;
 
 gamestarted = 0;
 
@@ -27,11 +27,16 @@ function draw() {
   if (gamestarted == 0) {
     startButton = createButton("start");
     startButton.position((3 * width) / 8, height / 2 - height / 2);
+    text('2 spiller pong', 50, 50);
+    text('Du bruker pil tast opp og ned for høyre rekkert.', 40, 70);
+    text('og "w" og "s" for venstre rekkert.', 40, 90)
+    text('Dette spillet er designet for å være ett samarbeids spill,', 40, 130)
+    text('det er om å gjøre å få flest mulig poeng sammen.', 40, 150)
+    text('Lykke til! (trykk start for å begynne)', 40, 170)
     startButton.mousePressed(start);  
     
   } else if (gamestarted == 1) {
     //lager ballen
-    startButton.remove();
     background(230);
     ellipse(xball, yball, 2 * r);
     textSize(20);

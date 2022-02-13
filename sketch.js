@@ -5,8 +5,8 @@ let recx1 = 10;
 let recy1 = 10;
 let recx2 = 380;
 let recy2 = 350;
-let xspeed = 5;
-let yspeed = 5;
+let xspeed = 4;
+let yspeed = 4;
 let r = 13;
 var score = 0;
 gamestarted = 0;
@@ -20,7 +20,7 @@ function setup() {
 function draw() {
   if (gamestarted == 0) {
     startButton = createButton("start");
-    startButton.position((2 * width) / 8, height / 2 - height / 2);
+    startButton.position((3 * width) / 8, height / 2 - height / 2);
     startButton.mousePressed(start);
   } else if (gamestarted == 1) {
     //lager ballen
@@ -37,10 +37,6 @@ function draw() {
     //lager rekkertene
     rect(recx1, recy1, 10, 60);
     rect(recx2, recy2, 10, 60);
-
-    viewButton = createButton("Vis leaderboard");
-    viewButton.position((3 * width) / 8, height / 2 - height / 2);
-    viewButton.mousePressed(visScoreboard);
 
     if (xball == recx1 + 20) {
       if (yball > recy1 && yball < recy1 + 60) {
@@ -82,25 +78,6 @@ function draw() {
     bounce();
   }
 
-  function visScoreboard() {
-    viewButton.remove();
-    saveButton = createButton("Save");
-    saveButton.position(width / 20, height / 20);
-    saveButton.mousePressed(saveScore);
-    closeButton = createButton("Close");
-    closeButton.position(width / 6, height / 20);
-    closeButton.mousePressed(closeScore);
-  }
-
-  function saveScore() {
-    echo("leaderboard", "txt");
-  }
-
-  function closeScore() {
-    saveButton.remove();
-    closeButton.remove();
-  }
-
   function start() {
     gamestarted = 1;
   }
@@ -113,15 +90,24 @@ function draw() {
 
   if (xball < 10 || xball > 390) {
     console.log("restart");
-
-    let xball = 50;
-    let yball = 200;
-    let recx1 = 10;
-    let recy1 = 10;
-    let recx2 = 380;
-    let recy2 = 350;
+    stop();
+    background(220);
+    startButton.remove();
     restartButton = createButton("RESTART");
-    restartButton.position(200, 200, 200);
-    //while (not restartButton.mousePressed() ) { Do nothing  }
+    restartButton.position((3 * width) / 8, height / 2 - height / 2);
+    restartButton.mousePressed(restart);
+  }
+
+  function restart() {
+    xball = 50;
+    yball = 200;
+    recx1 = 10;
+    recy1 = 10;
+    recx2 = 380;
+    recy2 = 350;
+    xspeed = 4;
+    yspeed = 4;
+    score = 0;
+    restartButton.remove();
   }
 }
